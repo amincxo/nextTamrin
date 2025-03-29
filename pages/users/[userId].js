@@ -1,11 +1,6 @@
-import { useRouter } from "next/router";
 
 function UserDetail({ data }) {
-    const router = useRouter();
 
-    if (router.isFallback) {
-        return <h2>FallBack page!</h2>
-    }
 
   return (
     <div>
@@ -21,7 +16,7 @@ export default UserDetail;
 export async function getStaticPaths () {
     const res = await fetch("https://jsonplaceholder.typicode.com/users");
     const data = await res.json();
-    const userData = data.slice(0, 4);
+    const userData = data.slice(0, 4)
     const paths = userData.map((user) => ({
         params :
          {
@@ -30,7 +25,7 @@ export async function getStaticPaths () {
     
     return {
         paths,
-        fallback: true,
+        fallback: "blocking",
     };
 }
 
