@@ -37,7 +37,7 @@ export async function getStaticProps (context) {
     const data = await res.json();
     if (!data.name) {
         return {
-            notFound: true,
+            redirect: {destination: "/"}
         };
     }
 
