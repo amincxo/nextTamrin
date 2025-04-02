@@ -26,10 +26,12 @@ export async function getStaticPaths () {
     return {
         paths,
         fallback: "blocking",
+        
     };
 }
 
 export async function getStaticProps (context) {
+    console.log("user revalidate")
     const {params} = context;
     const res = await fetch(`https://jsonplaceholder.typicode.com/users/${params.userId}`) 
     const data = await res.json();
@@ -40,6 +42,7 @@ export async function getStaticProps (context) {
     }
 
     return{
-        props: { data }
+        props: { data },
+        revalidate: 60,
     }
 }
