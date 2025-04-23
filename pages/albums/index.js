@@ -1,7 +1,6 @@
 import React from 'react'
 
 function Albumes({albums}) {
-    console.log(albums)
   return (
     <div>
         <h1>Albumes</h1>
@@ -19,9 +18,9 @@ function Albumes({albums}) {
 export default Albumes
 
 export async function getServerSideProps(context) {
-    const {parama , req , res } = context 
+    const {parama , req , res , query } = context 
     const response = await fetch('https://jsonplaceholder.typicode.com/albums');
-    console.log(res)
+    console.log(query)
     const data = await response.json();
     return { 
         props: {albums : data},
