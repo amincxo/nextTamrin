@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 function Albumes({albums}) {
   return (
@@ -7,7 +8,7 @@ function Albumes({albums}) {
         <ul>
             {albums.map((album)=> (
                 <li key={album.id} >
-                    <h3>{album.title}</h3>
+                    <Link href={`/albums/${album.id}`}><h3>{album.title}</h3></Link>
                 </li>
             ))}
         </ul>
