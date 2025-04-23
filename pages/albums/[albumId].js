@@ -16,7 +16,12 @@ export async function getServerSideProps(context) {
     const { params } = context;
     const res =  await fetch(`https://jsonplaceholder.typicode.com/albums/${params.albumId}`)
     const data = await res.json();
-    console.log(data);
+    if(!data.title) {
+        return {
+            // notFound: true,
+            redirect: {destination : '/albums'}
+        }
+    }
 
     return {
         props: {album: data},
